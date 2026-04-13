@@ -107,4 +107,8 @@ kubectl get nodes
 master     Ready
 worker-1   Ready
 
+11. Demo Deployment( RUN ONLY ON MASTER NODE)
+=============================================
+
+kubectl create deployment nginx --image=nginx
 
