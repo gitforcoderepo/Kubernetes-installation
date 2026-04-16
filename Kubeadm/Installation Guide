@@ -1,3 +1,5 @@
+Switch to root user before executing below commands
+
 1. Pre-clean (Run on ALL nodes)
 ============================
 
@@ -72,12 +74,12 @@ apt update
 apt install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
 
-5. Initialize Master (🔥 DO NOT MISS THIS FLAG)
+5. Initialize Master (🔥Run On MASTER ONLY)
 ================================================
 
 kubeadm init --pod-network-cidr=10.244.0.0/16
 
-6. Configure kubectl (MASTER ONLY)
+6. Configure kubectl (RUN ON MASTER ONLY)
 ==================================
 
 mkdir -p $HOME/.kube
