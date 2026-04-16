@@ -1,32 +1,19 @@
-Alright—here’s a **clean, step-by-step CLI guide** to create an **Amazon EKS** cluster from your EC2 Ubuntu machine.
-
-I’ll use the simplest and most reliable tool: **eksctl** (this avoids a lot of manual pain).
-
----
-
 # 🧭 Step-by-step: Create EKS cluster from CLI
 
 ## ✅ Step 1: Install AWS CLI
 
-```bash
+
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
-```
 
 Verify:
-
-```bash
 aws --version
-```
-
 ---
 
 ## ✅ Step 2: Configure AWS credentials
 
-```bash
 aws configure
-```
 
 Enter:
 
@@ -39,34 +26,24 @@ Enter:
 
 ## ✅ Step 3: Install eksctl
 
-```bash
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 
 sudo mv /tmp/eksctl /usr/local/bin
-```
+
 
 Verify:
-
-```bash
 eksctl version
-```
-
 ---
 
 ## ✅ Step 4: Install kubectl
 
-```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 ```
-
 Verify:
-
-```bash
 kubectl version --client
-```
 
 ---
 
@@ -74,14 +51,13 @@ kubectl version --client
 
 ### Basic command:
 
-```bash
 eksctl create cluster \
   --name my-cluster \
   --region ap-south-1 \
   --nodegroup-name my-nodes \
-  --node-type t3.medium \
+  --node-type t3.micro \
   --nodes 2
-```
+
 
 ---
 
@@ -100,7 +76,6 @@ This will automatically:
 
 ## ✅ Step 6: Verify cluster
 
-```bash
 kubectl get nodes
 ```
 
@@ -115,14 +90,11 @@ ip-...         Ready    <none>   ...   ...
 
 ## ✅ Step 7: Test deployment
 
-```bash
 kubectl create deployment nginx --image=nginx
 kubectl expose deployment nginx --type=LoadBalancer --port=80
-```
 
 Then:
 
-```bash
 kubectl get svc
 ```
 
@@ -156,23 +128,7 @@ Your AWS user/role must allow:
 
 When done:
 
-```bash
 eksctl delete cluster --name my-cluster --region ap-south-1
 ```
 
----
-
-# 🧠 Why this works (vs your current setup)
-
-* Kind / kubeadm → no AWS integration ❌
-* EKS → fully integrated → LoadBalancer works ✅
-
----
-
-If you want next steps, I can help you:
-
-* Install **Helm** on EKS
-* Set up **Ingress (ALB)**
-* Or deploy a real app end-to-end
-
-Just tell me 👍
+-
