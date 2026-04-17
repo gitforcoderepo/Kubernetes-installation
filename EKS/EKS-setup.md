@@ -1,5 +1,3 @@
-Here’s your **same content transformed into a clean, attractive GitHub-ready `.md` file** — better structure, spacing, visuals, and readability (perfect for students + portfolio) 👇
-
 ---
 
 ````markdown
