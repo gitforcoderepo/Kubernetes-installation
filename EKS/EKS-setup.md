@@ -1,5 +1,3 @@
----
-
 ````markdown
 # 🚀 EKS Cluster Setup using CLI
 
